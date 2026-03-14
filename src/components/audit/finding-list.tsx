@@ -74,7 +74,7 @@ export function FindingList({ findings }: FindingListProps) {
           className="pl-9 h-9 text-sm"
         />
       </div>
-      <div className="flex gap-1">
+      <div className="flex flex-wrap gap-1">
         {(["all", "critical", "warning", "info"] as const).map((s) => {
           const count =
             s === "all"
