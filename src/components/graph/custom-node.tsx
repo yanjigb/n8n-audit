@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, createElement } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import {
   Webhook,
@@ -77,7 +77,6 @@ const SEVERITY_BORDER: Record<string, string> = {
 };
 
 function CustomNodeComponent({ data }: NodeProps & { data: CustomNodeData }) {
-  const Icon = getNodeIcon(data.nodeType);
   const shortType = data.typeName || getShortTypeName(data.nodeType);
   const borderClass = data.severity
     ? SEVERITY_BORDER[data.severity]
@@ -104,7 +103,7 @@ function CustomNodeComponent({ data }: NodeProps & { data: CustomNodeData }) {
                   : "bg-muted text-muted-foreground"
             )}
           >
-            <Icon className="h-3.5 w-3.5" />
+            {createElement(getNodeIcon(data.nodeType), { className: "h-3.5 w-3.5" })}
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs font-semibold truncate leading-tight">

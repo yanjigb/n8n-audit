@@ -16,7 +16,6 @@
     "@xyflow/react": "^12.10.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "html2canvas": "^1.4.1",
     "jspdf": "^4.2.0",
     "lucide-react": "^0.576.0",
     "next": "16.1.6",

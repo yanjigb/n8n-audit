@@ -36,12 +36,7 @@ export default function HomePage() {
   const { executeAudit, auditResult, isAuditing, auditError } = useAudit();
   const { getKey, setKey } = useApiKeys();
   const { selectedProvider, setSelectedProvider } = useAuditStore();
-  const [localKey, setLocalKey] = useState("");
-
-  // Load stored key when provider changes
-  useEffect(() => {
-    setLocalKey(getKey(selectedProvider) ?? "");
-  }, [selectedProvider, getKey]);
+  const [localKey, setLocalKey] = useState(() => getKey(selectedProvider) ?? "");
 
   useEffect(() => {
     if (auditResult) {
