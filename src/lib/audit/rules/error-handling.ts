@@ -39,7 +39,7 @@ export const errorHandlingRules: AuditRule[] = [
       "The workflow does not contain an Error Trigger node for catching errors.",
     recommendation:
       "Add an Error Trigger node to define what happens when the workflow encounters an error.",
-    check(workflow, helpers) {
+    check(_workflow, helpers) {
       const errorTriggers = helpers.getNodesByType("errorTrigger");
       if (errorTriggers.length === 0) {
         return [
@@ -108,7 +108,7 @@ export const errorHandlingRules: AuditRule[] = [
       "External call nodes without continueOnFail or onError configured may halt the entire workflow on failure.",
     recommendation:
       "Configure continueOnFail or onError on nodes making external calls.",
-    check(workflow, helpers) {
+    check(workflow, _helpers) {
       const findings = [];
       for (const node of workflow.nodes) {
         if (node.disabled) continue;
@@ -218,7 +218,7 @@ export const errorHandlingRules: AuditRule[] = [
       "HTTP Request nodes without retry configuration may fail on transient errors.",
     recommendation:
       "Enable retryOnFail for HTTP Request nodes that call external APIs.",
-    check(workflow, helpers) {
+    check(_workflow, helpers) {
       const findings = [];
       const httpNodes = helpers.getNodesByType("httpRequest");
       for (const node of httpNodes) {
@@ -304,7 +304,7 @@ export const errorHandlingRules: AuditRule[] = [
       "HTTP Request nodes without explicit timeout may hang indefinitely if the external service is unresponsive.",
     recommendation:
       "Set a timeout value on HTTP Request nodes to prevent indefinite waiting.",
-    check(workflow, helpers) {
+    check(_workflow, helpers) {
       const findings = [];
       const httpNodes = helpers.getNodesByType("httpRequest");
       for (const node of httpNodes) {

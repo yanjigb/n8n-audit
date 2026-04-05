@@ -71,7 +71,7 @@ export const dataPrivacyRules: AuditRule[] = [
       "Workflow sends data to many different third-party services, increasing the data exposure surface.",
     recommendation:
       "Minimize the number of external services that receive sensitive data. Document data flows for privacy compliance.",
-    check(workflow, helpers) {
+    check(workflow, _helpers) {
       const externalServices = new Set<string>();
       const serviceTypes = [
         "httprequest",

@@ -120,7 +120,6 @@ export const vendorRiskRules: AuditRule[] = [
       const findings = [];
 
       // Find nodes that are the only path between trigger and a terminal action
-      const triggers = helpers.getTriggerNodes();
       const httpNodes = workflow.nodes.filter(
         (n) =>
           n.type.toLowerCase().includes("httprequest") && !n.disabled
@@ -165,7 +164,7 @@ export const vendorRiskRules: AuditRule[] = [
       "Workflow has no health check or monitoring for external service availability.",
     recommendation:
       "Create a separate health check workflow that monitors the availability of critical external services.",
-    check(workflow, helpers) {
+    check(workflow, _helpers) {
       const externalNodes = workflow.nodes.filter((n) => {
         if (n.disabled) return false;
         return EXTERNAL_CALL_TYPES.some((t) =>

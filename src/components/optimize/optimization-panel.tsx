@@ -19,7 +19,6 @@ import { SuggestionCard } from "./suggestion-card";
 // import { OptimizedJsonViewer } from "./optimized-json-viewer";
 import { useAiOptimization } from "@/hooks/use-ai-optimization";
 import { useApiKeys } from "@/hooks/use-api-keys";
-import { useAuditStore } from "@/stores/audit-store";
 import { useTranslation } from "@/lib/i18n";
 import type { OptimizationSuggestion } from "@/types/audit";
 
@@ -52,7 +51,6 @@ const IMPACT_HEADERS: Record<
 };
 
 export function OptimizationPanel() {
-  const workflow = useAuditStore((s) => s.workflow);
   const {
     optimizationResult,
     isOptimizing,

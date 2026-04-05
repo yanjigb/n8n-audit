@@ -72,7 +72,7 @@ export const complianceRules: AuditRule[] = [
       "Workflow performs critical operations (payments, data deletion, external communications) without any human approval step.",
     recommendation:
       "Add a manual approval step (Wait for Webhook, Form, or Slack approval) before critical operations.",
-    check(workflow, helpers) {
+    check(workflow, _helpers) {
       const criticalOps = [
         "stripe",
         "paypal",
