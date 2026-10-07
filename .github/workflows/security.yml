@@ -1,5 +1,5 @@
 # GitHub Actions — Security
-# Dependency vulnerability scan + PR dependency diff
+# Dependency vulnerability scan (npm audit)
 
 name: Security
 
@@ -36,18 +36,21 @@ jobs:
         run: npm audit --audit-level=moderate
         continue-on-error: true
 
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/dependency-review-action@v4
-        with:
-          config-file: .github/dependency-review-config.yml
-          # To fail PR on moderate+ vulnerabilities, uncomment:
-          # fail-on-severity: moderate
+  # Dependency Review requires GitHub Advanced Security (GHAS) — a paid feature.
+  # To enable: Settings > Security & analysis > GitHub Advanced Security > Enable
+  # Then uncomment the job below:
+  #
+  # dependency-review:
+  #   name: Dependency Review
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/dependency-review-action@v4
+  #       with:
+  #         config-file: .github/dependency-review-config.yml
+  #         fail-on-severity: moderate
