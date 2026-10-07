@@ -1,0 +1,51 @@
+# GitHub Actions — Tests
+# Matrix across Node versions; upload coverage artifact
+
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      # No test suite exists yet — placeholder for when one is added.
+      # Uncomment and adapt when you add Jest or Vitest:
+      #
+      # - name: Run tests with coverage
+      #   run: npx vitest run --coverage    # or: npx jest --coverage --ci
+      # - uses: actions/upload-artifact@v4
+      #   if: matrix.node-version == '22'
+      #   with:
+      #     name: coverage
+      #     path: coverage/
+      #     retention-days: 14
+      - name: Placeholder — no test suite configured
+        run: |
+          echo "No test suite detected. Add Jest/Vitest and update this workflow."
+          exit 0

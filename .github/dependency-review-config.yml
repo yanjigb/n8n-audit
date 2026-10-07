@@ -1,0 +1,18 @@
+# Dependency Review Configuration
+# Used by actions/dependency-review-action@v4 in security.yml
+
+# Fail PR if a new or updated dependency has a vulnerability at this severity or higher
+# Options: critical, high, moderate, low
+# Uncomment to enable failing:
+# fail-on-severity: moderate
+
+# Ignore specific advisories by GHSA ID (comma-separated)
+# ignore-ghsas: "GHSA-xxxx-xxxx-xxxx"
+
+# Ignore vulnerable packages from specific scopes (comma-separated)
+# ignore-scopes: "@types"
+
+# Allow development dependencies to have vulnerabilities (they don't ship)
+allow-ghsas: []
+ignore-ghsas: []
+ignore-scopes: []
