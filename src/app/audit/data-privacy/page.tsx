@@ -1,0 +1,32 @@
+"use client";
+
+import { useAuditStore } from "@/stores/audit-store";
+import { FindingList } from "@/components/audit/finding-list";
+import { ScoreRing } from "@/components/audit/score-ring";
+import { useTranslation } from "@/lib/i18n";
+
+export default function DataPrivacyPage() {
+  const { t } = useTranslation();
+  const auditResult = useAuditStore((s) => s.auditResult);
+  if (!auditResult) return null;
+
+  const category = auditResult.categories["data-privacy"] ?? {
+    score: 100,
+    findings: [],
+  };
+
+  return (
+    <div className="space-y-6 ">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-xl font-bold tracking-tight">{t("category.data-privacy")}</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            {t("category.data-privacy.desc")}
+          </p>
+        </div>
+        <ScoreRing score={category.score} size={80} strokeWidth={6} />
+      </div>
+      <FindingList findings={category.findings} />
+    </div>
+  );
+}
