@@ -1,23 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import type { AIProvider } from "@/types/audit";
 
 const STORAGE_KEY = "audit-n8n-keys";
 
 type KeyStore = Partial<Record<AIProvider, string>>;
 
-export function useApiKeys() {
-  const [keys, setKeys] = useState<KeyStore>({});
+function loadKeys(): KeyStore {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch {
+    // Ignore invalid stored data
+  }
+  return {};
+}
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setKeys(JSON.parse(stored));
-    } catch {
-      // Ignore invalid stored data
-    }
-  }, []);
+export function useApiKeys() {
+  const [keys, setKeys] = useState<KeyStore>(loadKeys);
 
   const getKey = useCallback(
     (provider: AIProvider): string | null => {

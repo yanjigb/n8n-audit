@@ -29,11 +29,7 @@ export default function AuditLayout({
       </aside>
       <Separator orientation="vertical" className="hidden md:block" />
       <div className="flex-1 overflow-auto">
-        {/* Mobile nav */}
-        <div className="md:hidden border-b overflow-x-auto">
-          <Sidebar />
-        </div>
-        <div className="p-6">{children}</div>
+        <div className="p-4 md:p-6">{children}</div>
       </div>
     </div>
   );

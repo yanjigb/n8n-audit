@@ -2,11 +2,14 @@
 
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, RotateCcw } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Moon, Sun, RotateCcw, Menu } from "lucide-react";
 import { useAuditStore } from "@/stores/audit-store";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
 import { LanguageToggle } from "./language-toggle";
+import { Sidebar } from "./sidebar";
+import { useState } from "react";
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -14,24 +17,36 @@ export function Header() {
   const workflow = useAuditStore((s) => s.workflow);
   const router = useRouter();
   const { t } = useTranslation();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center justify-between px-6">
-        <div className="flex items-center gap-3">
+      <div className="flex h-14 items-center justify-between px-4 md:px-6">
+        <div className="flex items-center gap-2 min-w-0">
+          {workflow && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden shrink-0"
+              onClick={() => setMobileNavOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Open navigation</span>
+            </Button>
+          )}
           <h1
-            className="text-lg font-bold tracking-tight cursor-pointer"
+            className="text-base md:text-lg font-bold tracking-tight cursor-pointer shrink-0"
             onClick={() => router.push("/")}
           >
             {t("common.appName")}
           </h1>
           {workflow && (
-            <span className="text-sm text-muted-foreground">
+            <span className="hidden sm:inline text-sm text-muted-foreground truncate">
               / {workflow.name}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 md:gap-2 shrink-0">
           {workflow && (
             <Button
               variant="ghost"
@@ -41,8 +56,8 @@ export function Header() {
                 router.push("/");
               }}
             >
-              <RotateCcw className="mr-1 h-4 w-4" />
-              {t("common.newAudit")}
+              <RotateCcw className="h-4 w-4" />
+              <span className="hidden sm:inline ml-1">{t("common.newAudit")}</span>
             </Button>
           )}
           <LanguageToggle />
@@ -57,6 +72,20 @@ export function Header() {
           </Button>
         </div>
       </div>
+
+      {/* Mobile sidebar drawer */}
+      <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+        <SheetContent side="left" className="w-64 p-0">
+          <SheetHeader className="px-4 py-3 border-b">
+            <SheetTitle className="text-sm font-semibold">
+              {t("common.appName")}
+            </SheetTitle>
+          </SheetHeader>
+          <div onClick={() => setMobileNavOpen(false)}>
+            <Sidebar />
+          </div>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 }
