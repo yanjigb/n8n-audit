@@ -59,6 +59,6 @@ Next.js 16 (App Router) · React 19 · TypeScript 5 (strict) · Tailwind CSS v4 
 
 For dev commands and quality gates, see [Getting Started](docs/getting-started.md). Run `make help` for the full build-automation target list.
 
-## Community
+## Social
 
-[Discord](https://discord.com/invite/rVkMfNB3J)
+[Discord](https://discord.com/invite/rVkMfNB3J) | [Instagram](https://www.instagram.com/therealyanjigb/) | [Linkedin](https://www.linkedin.com/in/gbao/)
