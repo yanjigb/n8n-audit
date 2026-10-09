@@ -2,8 +2,13 @@
 
 <img width="1276" height="824" alt="file-df28a53f82f69f2b43973a75f0fc29b8" src="https://github.com/user-attachments/assets/c82f240c-355b-46a2-b636-48c4c5386147" />
 
+<div align="center">
+  <a href="https://www.facebook.com/share/v/1CQGCzYbGc/">Watch Demo</a>
+</div>
 
-> AI-powered audit tool for n8n workflow JSON files — scored findings across 8 security & quality categories, with a guarded AI optimization pass.
+<br />
+
+AI-powered audit tool for n8n workflow JSON files — scored findings across 8 security & quality categories, with a guarded AI optimization pass.
 
 Upload any n8n workflow, choose your AI provider (Anthropic Claude or Google Gemini with your own API key), and get a detailed security and quality analysis in seconds. Optionally apply AI-generated patches to improve the workflow — safely.
 
