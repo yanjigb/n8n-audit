@@ -66,4 +66,4 @@ For dev commands and quality gates, see [Getting Started](docs/getting-started.m
 
 ## Social
 
-[Discord](https://discord.com/invite/rVkMfNB3J) | [Instagram](https://www.instagram.com/therealyanjigb/) | [Linkedin](https://www.linkedin.com/in/gbao/)
+[Discord](https://discord.gg/QcwxXpTEC4) | [Instagram](https://www.instagram.com/therealyanjigb/) | [Linkedin](https://www.linkedin.com/in/gbao/)
